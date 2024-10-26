@@ -1,4 +1,6 @@
 <x-app-layout>
+<div class="p-4 sm:ml-64" style="margin-top: 5%;">
+<div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 bg-white">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
         users
@@ -46,4 +48,6 @@
             </div>
         </div>
     </div>
+</div>
+</div>
 </x-app-layout>

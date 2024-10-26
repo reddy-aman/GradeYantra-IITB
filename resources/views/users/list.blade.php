@@ -1,101 +1,80 @@
 <x-app-layout>
-    <x-slot name="header">
-        <div class="flex justify-between">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Users') }}
-            </h2>
-            <a class="rounded text-sm bg-slate-700 px-4 py-2 text-white" href="{{ route('Roles.create') }}">Create</a>
-        </div>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <x-message></x-message>
-                    <div class="flex flex-col">
-                        <div class="-m-1.5 overflow-x-auto">
-                            <div class="p-1.5 min-w-full inline-block align-middle">
-                                <div class="border rounded-lg shadow overflow-hidden">
-                                    <table class="min-w-full divide-y divide-gray-200">
-                                        <thead class="bg-gray-50">
-                                            <tr>
-                                                <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase">ID</th>
-                                                <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase">User Name</th>
-                                                <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase">Email</th>
-                                                <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase">Assigned Role</th>
-                                                <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase">Creation Date</th>
-                                                <th scope="col" class="px-6 py-3 text-center text-sm font-medium text-gray-500 uppercase">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="divide-y divide-gray-200">
-                                            @if ($users->isNotEmpty())
-                                                @foreach ($users as $user)
-                                                    <tr>
-                                                        <td class="px-6 py-4 text-left whitespace-nowrap text-sm font-medium text-gray-800">{{ $user->id }}</td>
-                                                        <td class="px-6 py-4 text-left whitespace-nowrap text-sm text-gray-800">{{ $user->name }}</td>
-                                                        <td class="px-6 py-4 text-left whitespace-nowrap text-sm text-gray-800" style="word-wrap: break-word; word-break: break-all; white-space: normal;">
-                                                        {{ $user->email}}
-                                                        </td>
-                                                        <td class="px-6 py-4 text-left whitespace-nowrap text-sm text-gray-800" style="word-wrap: break-word; word-break: break-all; white-space: normal;">
-                                                        {{ $user->roles->pluck('name')->implode(',')}}
-                                                        </td>
-                                                        <td class="px-6 py-4 text-left whitespace-nowrap text-sm text-gray-800">{{ \Carbon\Carbon::parse($user->created_at)->format('d M Y') }}</td>
-                                                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                                                            <a class="rounded text-sm bg-slate-700 px-3 py-2 text-white" href="{{route("users.edit",parameters: $user->id)}}">Edit</a>
-                                                        </td>
-                                                       
-                                                    </tr>
-                                                @endforeach
-                                            @else
-                                                <tr>
-                                                    <td colspan="4" class="px-6 py-4 text-center text-sm text-gray-500">No permissions available.</td>
-                                                </tr>
-                                            @endif
-                                        </tbody>
-                                    </table>
-
-                                    <!-- Pagination part -->
-                                    <div class="mt-2 text-center my-3">
-                                        <ul class="inline-flex -space-x-px text-base h-10">
-                                            <li>
-                                                {{ $users->links('vendor.pagination.custom-pagination') }}
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="p-4 sm:ml-64" style="margin-top: 5%;">
+   <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 bg-white">
+   <div class="mb-5 mt-3">
+   <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        Users Table<a class="text-blue-700" href=""></a>
+    </h2>
     </div>
-    <x-slot name="script">
-    <script type="text/javascript">
-    function deleteRoles(id) {
-        if (confirm("Are you sure you want to delete Role ?")) {
-            $.ajax({
-                url: '{{ route("Roles.destroy", ":id") }}'.replace(':id', id),  // Replace the :id placeholder with the actual ID
-                type: 'DELETE',
-                dataType: 'json',
-                headers: {
-                    'x-csrf-token': '{{ csrf_token() }}'  // Include CSRF token for security
-                },
-                success: function(response) {
-                    if (response.status) {
-                        window.location.href = '{{ route("Roles.index") }}';  // Redirect to index after deletion
-                    } else {
-                        alert('Failed to delete Roles.');
-                    }
-                },
-                error: function(xhr) {
-                    console.log(xhr.responseText);  // Log server response for debugging
-                }
-            });
-        }
-    }
-</script>
+   
+   <x-message></x-message>
+   <table id="search-table">
+    <thead>
+        <tr>
+            <th>
+                <span class="flex items-center">
+                ID
+                </span>
+            </th>
+            <th>
+                <span class="flex items-center">
+                User Name
+                </span>
+            </th>
+            <th>
+                <span class="flex items-center">
+                Email
+                </span>
+            </th>
+            <th>
+                <span class="flex items-center">
+                Assigned Role
+                </span>
+            </th>
+            <th>
+                <span class="flex items-center">
+                Creation Date
+                </span>
+            </th>
+            <th>
+                <span class="flex items-center">
+                Action
+                </span>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    @if ($users->isNotEmpty())
+    @foreach ($users as $user)
+        <tr>
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $user->id }}</td>
+            <td>{{ $user->name }}</td>
+            <td>{{ $user->email}}</td>
+            <td>{{ $user->roles->pluck('name')->implode(',')}}</td>
+            <td>{{ \Carbon\Carbon::parse($user->created_at)->format('d M Y') }}</td>
+            <td> 
+            <a class="rounded text-sm bg-slate-700 px-3 py-2 text-white" href="{{route("users.edit",parameters: $user->id)}}">Edit</a>
+            </td>
+        </tr>
+    @endforeach
+    @else
+    <tr>
+        <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">No users available.</td>
+    </tr>
+    @endif
+    </tbody>
+</table>
+</div>
+</div>
 
-    </x-slot>
 </x-app-layout>
+<script>
+
+if (document.getElementById("search-table") && typeof simpleDatatables.DataTable !== 'undefined') {
+    const dataTable = new simpleDatatables.DataTable("#search-table", {
+        searchable: true,
+        sortable: false
+    });
+}
+
+</script>
