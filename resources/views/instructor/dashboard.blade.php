@@ -1,26 +1,37 @@
 <x-app-layout>
-    
+<style>
+
+.Courses-card {
+ margin-top: 0;
+}
+
+/* Optional: Adjust for smaller screens */
+@media (max-width: 500px) {
+  .Courses-card {
+    padding-top: 23%;
+  }
+}
+
+</style>
 
  <!-- Your Courses start -->
 
- <div class="p-4 sm:ml-64" style="margin-top: 5%;">
-   
- <div class="bg-white p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-  <h3 class="ml-2 mt-3 mb-5 font-semibold text-xl text-gray-800 leading-tight">Your Courses</h3>
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
-    <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700">
-      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Course Name</h5>
-      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Course Descriptions Here</p>
-      <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-        0 View Assignments
-        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-        </svg>
-      </a>
-    </div>  
+ <div class="p-4 sm:ml-64 Courses-card" style="margin-top: 5%;">
+  <div class="bg-white p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+    <h3 class="ml-2 mt-3 mb-5 font-semibold text-xl text-gray-800 leading-tight">Your Courses</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+      <div class="max-w-full sm:max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Course Name</h5>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Course Descriptions Here</p>
+        <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+          0 View Assignments
+          <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+          </svg>
+        </a>
+      </div>  
+    </div>
   </div>
-</div>
-
 </div>
 
  <!-- Your Courses end  -->

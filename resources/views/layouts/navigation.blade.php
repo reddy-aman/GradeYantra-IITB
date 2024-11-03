@@ -102,7 +102,7 @@
                </svg>
             </button>
             <a href="#" class="flex ms-2 md:me-24">
-               <x-application-logo class="h-8 me-3" alt="FlowBite Logo" />
+               <x-application-logo/>
                <span
                   class="self-center text-xl font-semibold sm:text-2xl ml-3 whitespace-nowrap dark:text-white">Mulyankan</span>
             </a>
