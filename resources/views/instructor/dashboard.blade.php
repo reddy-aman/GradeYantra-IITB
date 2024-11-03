@@ -180,7 +180,7 @@
     </div>
 </div>
 
-<!-- Entry Code modal close -->
+<!-- Entry Code modal closed -->
 
 
 </x-app-layout>
