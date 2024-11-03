@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('GradeYantra', 'GradeYantra') }}</title>
+        <title>{{ config('Mulyankan', 'Mulyankan') }}</title>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">

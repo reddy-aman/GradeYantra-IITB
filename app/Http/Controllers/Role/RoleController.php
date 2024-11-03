@@ -62,6 +62,7 @@ class RoleController extends Controller implements HasMiddleware
             if(!empty($request->permission)){
                 foreach($request->permission as $name){
                     $role->givePermissionTo($name);
+                    //dd( $role->givePermissionTo($name),$name);
                 }
             }
 

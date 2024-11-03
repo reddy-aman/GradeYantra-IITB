@@ -15,28 +15,25 @@ Route::middleware(['auth', 'verified'])->group(function () {
     
     // Route for Instructor Dashboard
     Route::get('Instructor/dashboard', function () {
-        return view('dashboard'); // Adjust to your instructor dashboard view
-    })->name('dashboard');
+        return view('instructor.dashboard'); // Adjust to your instructor dashboard view
+    })->name('instructor.dashboard');
 
     // Route for Student Dashboard
     Route::get('student/dashboard', function () {
+        //dd(auth()->user()->getPermissionNames(),auth()->user()->getRoleNames());
+
         return view('student.dashboard'); // Adjust to your student dashboard view
     })->name('student.dashboard');
 
     // Redirect user to their dashboard based on their role
     Route::get('/dashboard', function () {
-        if (auth()->user()->hasRole('Instructor')) {
-            return redirect()->route('dashboard');
-        } elseif (auth()->user()->hasRole('Student')) {
-            return redirect()->route('student.dashboard');
-        }
         return abort(403); // Forbidden if role doesn't match
     })->name('dashboard.redirect');
 
     // User profile routes
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/change-password', [ProfileController::class, 'edit'])->name('auth.change-password');
+    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
     // Permissions routes
     Route::get('/permissions/view', [PermissionController::class, 'index'])->name('permissions.index');
